@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>550245684375-likebbgd155td0fk017mgguh8s88ki12.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.550245684375-likebbgd155td0fk017mgguh8s88ki12</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>550245684375-rj4e3l7bk7b0qp99rrmtodti0o5jmsmr.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCgVeiqh1RhK-WSPbghn4pMTfaiDr1d90M</string>
+	<key>GCM_SENDER_ID</key>
+	<string>550245684375</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.flutterflow.finwallet</string>
+	<key>PROJECT_ID</key>
+	<string>achei-no-jarbas-6060c</string>
+	<key>STORAGE_BUCKET</key>
+	<string>achei-no-jarbas-6060c.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:550245684375:ios:d27bb0f322ae02c5f245d2</string>
+</dict>
+</plist>

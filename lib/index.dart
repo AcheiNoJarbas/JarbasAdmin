@@ -1,0 +1,33 @@
+// Export pages
+export '/pages/crud_estado/home_admin/home_admin_widget.dart'
+    show HomeAdminWidget;
+export '/pages/transfer_complete/transfer_complete_widget.dart'
+    show TransferCompleteWidget;
+export '/pages/crud_estado/detalhes_da_empresa/detalhes_da_empresa_widget.dart'
+    show DetalhesDaEmpresaWidget;
+export '/pages/crud_empresas/edit_and_create_crud_empresas/edit_and_create_crud_empresas_widget.dart'
+    show EditAndCreateCrudEmpresasWidget;
+export '/pages/crud_categorias/list_crud_categorias/list_crud_categorias_widget.dart'
+    show ListCrudCategoriasWidget;
+export '/pages/crud_bairros/list_crud_bairros/list_crud_bairros_widget.dart'
+    show ListCrudBairrosWidget;
+export '/pages/crud_contrato/list_crud_contratos/list_crud_contratos_widget.dart'
+    show ListCrudContratosWidget;
+export '/pages/crud_municipios/list_crud_municipios/list_crud_municipios_widget.dart'
+    show ListCrudMunicipiosWidget;
+export '/pages/crud_estado/list_crud_estado/list_crud_estado_widget.dart'
+    show ListCrudEstadoWidget;
+export '/pages/crud_contrato/crud_edit_and_create_contrato/crud_edit_and_create_contrato_widget.dart'
+    show CrudEditAndCreateContratoWidget;
+export '/pages/crud_empresas/empresas_lis_crud/empresas_lis_crud_widget.dart'
+    show EmpresasLisCrudWidget;
+export '/pages/crud_storys/criar_storys/criar_storys_widget.dart'
+    show CriarStorysWidget;
+export '/pages/crud_storys/list_empresas_with_storys/list_empresas_with_storys_widget.dart'
+    show ListEmpresasWithStorysWidget;
+export '/pages/crud_storys/view_story/view_story_widget.dart'
+    show ViewStoryWidget;
+export '/pages/crud_storys/storys_by_empresa/storys_by_empresa_widget.dart'
+    show StorysByEmpresaWidget;
+export '/pages/crud_empresas/empresas_list_destaque/empresas_list_destaque_widget.dart'
+    show EmpresasListDestaqueWidget;

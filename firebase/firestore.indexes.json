@@ -1,0 +1,18 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "storys",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "empresaID",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createdTime",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ]
+}
