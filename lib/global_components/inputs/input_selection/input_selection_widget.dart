@@ -114,9 +114,7 @@ class _InputSelectionWidgetState extends State<InputSelectionWidget> {
                         fontSize: 16.0,
                         letterSpacing: 0.0,
                       ),
-                  hintText: widget!.hintText != null && widget!.hintText != ''
-                      ? widget!.hintText
-                      : widget!.label,
+                  hintText: widget!.hintText,
                   searchHintText: FFLocalizations.of(context).getText(
                     '7r4if1qu' /* Busque */,
                   ),

@@ -31,22 +31,22 @@ class BairrosRecord extends FirestoreRecord {
   String get stateCode => _stateCode ?? '';
   bool hasStateCode() => _stateCode != null;
 
-  // "muncipioID" field.
-  String? _muncipioID;
-  String get muncipioID => _muncipioID ?? '';
-  bool hasMuncipioID() => _muncipioID != null;
-
   // "bairroID" field.
   String? _bairroID;
   String get bairroID => _bairroID ?? '';
   bool hasBairroID() => _bairroID != null;
 
+  // "municipioID" field.
+  String? _municipioID;
+  String get municipioID => _municipioID ?? '';
+  bool hasMunicipioID() => _municipioID != null;
+
   void _initializeFields() {
     _nome = snapshotData['nome'] as String?;
     _municipio = snapshotData['municipio'] as String?;
     _stateCode = snapshotData['stateCode'] as String?;
-    _muncipioID = snapshotData['muncipioID'] as String?;
     _bairroID = snapshotData['bairroID'] as String?;
+    _municipioID = snapshotData['municipioID'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -87,16 +87,16 @@ Map<String, dynamic> createBairrosRecordData({
   String? nome,
   String? municipio,
   String? stateCode,
-  String? muncipioID,
   String? bairroID,
+  String? municipioID,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'nome': nome,
       'municipio': municipio,
       'stateCode': stateCode,
-      'muncipioID': muncipioID,
       'bairroID': bairroID,
+      'municipioID': municipioID,
     }.withoutNulls,
   );
 
@@ -111,13 +111,13 @@ class BairrosRecordDocumentEquality implements Equality<BairrosRecord> {
     return e1?.nome == e2?.nome &&
         e1?.municipio == e2?.municipio &&
         e1?.stateCode == e2?.stateCode &&
-        e1?.muncipioID == e2?.muncipioID &&
-        e1?.bairroID == e2?.bairroID;
+        e1?.bairroID == e2?.bairroID &&
+        e1?.municipioID == e2?.municipioID;
   }
 
   @override
   int hash(BairrosRecord? e) => const ListEquality()
-      .hash([e?.nome, e?.municipio, e?.stateCode, e?.muncipioID, e?.bairroID]);
+      .hash([e?.nome, e?.municipio, e?.stateCode, e?.bairroID, e?.municipioID]);
 
   @override
   bool isValidKey(Object? o) => o is BairrosRecord;

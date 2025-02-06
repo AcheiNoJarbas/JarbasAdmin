@@ -294,6 +294,8 @@ class _WidgetCrudEditAndCreateMunicipiosWidgetState
                                         .stateCodeModel.listIsEmptyTrueValue,
                                     nome: _model
                                         .cityNameModel.textController.text,
+                                    image: '',
+                                    municipioID: '',
                                   ));
                                   _model.createMunicipio =
                                       MunicipiosRecord.getDocumentFromData(
@@ -302,6 +304,8 @@ class _WidgetCrudEditAndCreateMunicipiosWidgetState
                                                 .listIsEmptyTrueValue,
                                             nome: _model.cityNameModel
                                                 .textController.text,
+                                            image: '',
+                                            municipioID: '',
                                           ),
                                           municipiosRecordReference);
 

@@ -109,12 +109,12 @@ class _CardMunicipioWidgetState extends State<CardMunicipioWidget> {
                             ),
                           ],
                         ),
-                        Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: Text(
+                        Expanded(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
                                 valueOrDefault<String>(
                                   '${widget!.municipioDocument?.nome}-${widget!.municipioDocument?.stateCode}',
                                   'city-state',
@@ -128,8 +128,8 @@ class _CardMunicipioWidgetState extends State<CardMunicipioWidget> {
                                       fontWeight: FontWeight.bold,
                                     ),
                               ),
-                            ),
-                          ].divide(SizedBox(height: 10.0)),
+                            ].divide(SizedBox(height: 10.0)),
+                          ),
                         ),
                       ].divide(SizedBox(width: 10.0)),
                     ),

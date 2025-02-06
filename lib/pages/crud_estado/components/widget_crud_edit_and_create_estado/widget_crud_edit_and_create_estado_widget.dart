@@ -215,6 +215,7 @@ class _WidgetCrudEditAndCreateEstadoWidgetState
                                         .stateNameModel.textController.text,
                                     code: _model
                                         .stateCodeModel.textController.text,
+                                    estadoID: '',
                                   ));
                                   _model.createEstado =
                                       EstadosRecord.getDocumentFromData(
@@ -223,6 +224,7 @@ class _WidgetCrudEditAndCreateEstadoWidgetState
                                                 .textController.text,
                                             code: _model.stateCodeModel
                                                 .textController.text,
+                                            estadoID: '',
                                           ),
                                           estadosRecordReference);
 

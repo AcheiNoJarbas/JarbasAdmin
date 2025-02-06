@@ -127,18 +127,20 @@ class _CardBairroWidgetState extends State<CardBairroWidget> {
                                     fontWeight: FontWeight.bold,
                                   ),
                             ),
-                            Text(
-                              valueOrDefault<String>(
-                                '${widget!.bairroDocument?.municipio}-${widget!.bairroDocument?.stateCode}',
-                                'city-state',
+                            Expanded(
+                              child: Text(
+                                valueOrDefault<String>(
+                                  '${widget!.bairroDocument?.municipio}-${widget!.bairroDocument?.stateCode}',
+                                  'city-state',
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Lexend',
+                                      fontSize: 16.0,
+                                      letterSpacing: 0.0,
+                                    ),
                               ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Lexend',
-                                    fontSize: 18.0,
-                                    letterSpacing: 0.0,
-                                  ),
                             ),
                           ].divide(SizedBox(height: 10.0)),
                         ),

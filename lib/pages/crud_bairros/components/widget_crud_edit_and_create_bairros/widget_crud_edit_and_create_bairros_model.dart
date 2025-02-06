@@ -35,33 +35,34 @@ class WidgetCrudEditAndCreateBairrosModel
   void updateEmptyListAtIndex(int index, Function(String) updateFn) =>
       emptyList[index] = updateFn(emptyList[index]);
 
-  MunicipiosRecord? municipioObject;
-
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();
   // Stores action output result for [Backend Call - Read Document] action in widgetCrudEditAndCreateBairros widget.
   BairrosRecord? resultRequestBairroByID;
+  // Stores action output result for [Firestore Query - Query a collection] action in widgetCrudEditAndCreateBairros widget.
+  MunicipiosRecord? muncipioByIDreload;
   // Model for cityName.
   late InputNormalModel cityNameModel;
   // Model for municipioName.
   late InputSelectionModel municipioNameModel;
-  // Stores action output result for [Firestore Query - Query a collection] action in municipioName widget.
-  MunicipiosRecord? resultDropdwonRequest;
-  // Model for stateCode.
-  late InputSelectionModel stateCodeModel;
   // Model for normalButton component.
   late NormalButtonModel normalButtonModel1;
   // Stores action output result for [Validate Form] action in normalButton widget.
   bool? reslutValidate;
+  // Stores action output result for [Firestore Query - Query a collection] action in normalButton widget.
+  MunicipiosRecord? municipioSelectedUpdate;
   // Model for normalButton component.
   late NormalButtonModel normalButtonModel2;
+  // Stores action output result for [Firestore Query - Query a collection] action in normalButton widget.
+  MunicipiosRecord? muncipioById;
+  // Stores action output result for [Backend Call - Create Document] action in normalButton widget.
+  BairrosRecord? createBairro;
 
   @override
   void initState(BuildContext context) {
     cityNameModel = createModel(context, () => InputNormalModel());
     municipioNameModel = createModel(context, () => InputSelectionModel());
-    stateCodeModel = createModel(context, () => InputSelectionModel());
     normalButtonModel1 = createModel(context, () => NormalButtonModel());
     normalButtonModel2 = createModel(context, () => NormalButtonModel());
     cityNameModel.textControllerValidator = _formTextFieldValidator;
@@ -71,7 +72,6 @@ class WidgetCrudEditAndCreateBairrosModel
   void dispose() {
     cityNameModel.dispose();
     municipioNameModel.dispose();
-    stateCodeModel.dispose();
     normalButtonModel1.dispose();
     normalButtonModel2.dispose();
   }

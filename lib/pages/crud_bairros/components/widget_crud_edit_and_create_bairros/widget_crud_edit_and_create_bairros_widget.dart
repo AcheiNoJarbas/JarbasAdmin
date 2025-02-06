@@ -51,6 +51,13 @@ class _WidgetCrudEditAndCreateBairrosWidgetState
       if (widget!.bairroID != null) {
         _model.resultRequestBairroByID =
             await BairrosRecord.getDocumentOnce(widget!.bairroID!);
+        _model.muncipioByIDreload = await queryMunicipiosRecordOnce(
+          queryBuilder: (municipiosRecord) => municipiosRecord.where(
+            'municipioID',
+            isEqualTo: _model.resultRequestBairroByID?.municipioID,
+          ),
+          singleRecord: true,
+        ).then((s) => s.firstOrNull);
         safeSetState(() {
           _model.cityNameModel.textController?.text =
               _model.resultRequestBairroByID!.nome;
@@ -157,69 +164,15 @@ class _WidgetCrudEditAndCreateBairrosWidgetState
                             child: InputSelectionWidget(
                               label: 'Adicione municipio do bairro',
                               itemSelected: widget!.bairroID != null
-                                  ? _model.resultRequestBairroByID!.municipio
+                                  ? _model.resultRequestBairroByID!.municipioID
                                   : '',
                               labelsList: municipioNameMunicipiosRecordList
                                   .map((e) => e.nome)
                                   .toList(),
                               valueList: municipioNameMunicipiosRecordList
-                                  .map((e) => e.nome)
+                                  .map((e) => e.municipioID)
                                   .toList(),
                               hintText: '',
-                              functionOnselected: () async {
-                                _model.resultDropdwonRequest =
-                                    await queryMunicipiosRecordOnce(
-                                  queryBuilder: (municipiosRecord) =>
-                                      municipiosRecord.where(
-                                    'Nome',
-                                    isEqualTo: _model.municipioNameModel
-                                        .listIsEmptyTrueValue,
-                                  ),
-                                  singleRecord: true,
-                                ).then((s) => s.firstOrNull);
-                                _model.municipioObject =
-                                    _model.resultDropdwonRequest;
-                                _model.muncipioSelected = true;
-                                safeSetState(() {});
-
-                                safeSetState(() {});
-                              },
-                            ),
-                          );
-                        },
-                      ),
-                    if (_model.muncipioSelected)
-                      StreamBuilder<List<EstadosRecord>>(
-                        stream: queryEstadosRecord(),
-                        builder: (context, snapshot) {
-                          // Customize what your widget looks like when it's loading.
-                          if (!snapshot.hasData) {
-                            return Center(
-                              child: SizedBox(
-                                width: 40.0,
-                                height: 40.0,
-                                child: CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                    FlutterFlowTheme.of(context).primary,
-                                  ),
-                                ),
-                              ),
-                            );
-                          }
-                          List<EstadosRecord> stateCodeEstadosRecordList =
-                              snapshot.data!;
-
-                          return wrapWithModel(
-                            model: _model.stateCodeModel,
-                            updateCallback: () => safeSetState(() {}),
-                            child: InputSelectionWidget(
-                              label: 'Estado',
-                              itemSelected: '',
-                              labelsList: _model.emptyList,
-                              valueList: _model.emptyList,
-                              hintText: widget!.bairroID != null
-                                  ? _model.resultRequestBairroByID?.stateCode
-                                  : _model.municipioObject?.stateCode,
                               functionOnselected: () async {},
                             ),
                           );
@@ -250,9 +203,10 @@ class _WidgetCrudEditAndCreateBairrosWidgetState
                                       context: context,
                                       builder: (alertDialogContext) {
                                         return AlertDialog(
-                                          title: Text('Estado não selecionado'),
+                                          title: Text(
+                                              'Municipio  não selecionado'),
                                           content: Text(
-                                              'O estado tem que ser selecionado para executar essa ação!'),
+                                              'O municipio tem  que ser selecionado para executar essa ação!'),
                                           actions: [
                                             TextButton(
                                               onPressed: () => Navigator.pop(
@@ -267,15 +221,27 @@ class _WidgetCrudEditAndCreateBairrosWidgetState
                                     safeSetState(() {});
                                     return;
                                   }
+                                  _model.municipioSelectedUpdate =
+                                      await queryMunicipiosRecordOnce(
+                                    queryBuilder: (municipiosRecord) =>
+                                        municipiosRecord.where(
+                                      'municipioID',
+                                      isEqualTo: _model.municipioNameModel
+                                          .listIsEmptyTrueValue,
+                                    ),
+                                    singleRecord: true,
+                                  ).then((s) => s.firstOrNull);
 
                                   await widget!.bairroID!
                                       .update(createBairrosRecordData(
                                     nome: _model
                                         .cityNameModel.textController.text,
-                                    municipio: _model.municipioNameModel
-                                        .listIsEmptyTrueValue,
-                                    stateCode:
-                                        _model.municipioObject?.stateCode,
+                                    municipio:
+                                        _model.municipioSelectedUpdate?.nome,
+                                    stateCode: _model
+                                        .municipioSelectedUpdate?.stateCode,
+                                    municipioID: _model
+                                        .municipioSelectedUpdate?.municipioID,
                                   ));
                                   await showDialog(
                                     context: context,
@@ -328,9 +294,10 @@ class _WidgetCrudEditAndCreateBairrosWidgetState
                                       context: context,
                                       builder: (alertDialogContext) {
                                         return AlertDialog(
-                                          title: Text('Estado não selecionado'),
+                                          title: Text(
+                                              'Municipio  não selecionado'),
                                           content: Text(
-                                              'O estado tem que ser selecionado para executar essa ação!'),
+                                              'O municipio tem  que ser selecionado para executar essa ação!'),
                                           actions: [
                                             TextButton(
                                               onPressed: () => Navigator.pop(
@@ -343,17 +310,49 @@ class _WidgetCrudEditAndCreateBairrosWidgetState
                                     );
                                     return;
                                   }
+                                  _model.muncipioById =
+                                      await queryMunicipiosRecordOnce(
+                                    queryBuilder: (municipiosRecord) =>
+                                        municipiosRecord.where(
+                                      'municipioID',
+                                      isEqualTo: _model.municipioNameModel
+                                          .listIsEmptyTrueValue,
+                                    ),
+                                    singleRecord: true,
+                                  ).then((s) => s.firstOrNull);
 
-                                  await BairrosRecord.collection
-                                      .doc()
+                                  var bairrosRecordReference =
+                                      BairrosRecord.collection.doc();
+                                  await bairrosRecordReference
                                       .set(createBairrosRecordData(
-                                        stateCode:
-                                            _model.municipioObject?.stateCode,
-                                        nome: _model
-                                            .cityNameModel.textController.text,
-                                        municipio: _model.municipioNameModel
-                                            .listIsEmptyTrueValue,
-                                      ));
+                                    stateCode: _model.muncipioById?.stateCode,
+                                    nome: _model
+                                        .cityNameModel.textController.text,
+                                    municipio: _model.muncipioById?.nome,
+                                    bairroID: '',
+                                    municipioID: _model.municipioNameModel
+                                        .listIsEmptyTrueValue,
+                                  ));
+                                  _model.createBairro =
+                                      BairrosRecord.getDocumentFromData(
+                                          createBairrosRecordData(
+                                            stateCode:
+                                                _model.muncipioById?.stateCode,
+                                            nome: _model.cityNameModel
+                                                .textController.text,
+                                            municipio:
+                                                _model.muncipioById?.nome,
+                                            bairroID: '',
+                                            municipioID: _model
+                                                .municipioNameModel
+                                                .listIsEmptyTrueValue,
+                                          ),
+                                          bairrosRecordReference);
+
+                                  await _model.createBairro!.reference
+                                      .update(createBairrosRecordData(
+                                    bairroID: _model.createBairro?.reference.id,
+                                  ));
                                   await showDialog(
                                     context: context,
                                     builder: (dialogContext) {
@@ -378,6 +377,8 @@ class _WidgetCrudEditAndCreateBairrosWidgetState
                                       );
                                     },
                                   );
+
+                                  safeSetState(() {});
                                 },
                               ),
                             ),
